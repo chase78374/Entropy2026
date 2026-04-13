@@ -11,8 +11,8 @@ import org.firstinspires.ftc.teamcode.pedroPathing.subsystems.flywheel;
 
 
 
-@TeleOp(name="Motor Tester", group="Linear Opmode")
-    public class motortest extends LinearOpMode {
+@TeleOp(name="Entropy2026", group="Linear Opmode")
+    public class Entropy2026 extends LinearOpMode {
 
         private DcMotor FL = null;
         private DcMotor FR = null;
