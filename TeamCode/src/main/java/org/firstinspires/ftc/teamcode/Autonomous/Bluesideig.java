@@ -1,5 +1,5 @@
 // Converted to Pedro Timer (already used). Replaced ElapsedTime with pedro Timer.
-package org.firstinspires.ftc.teamcode.pedroPathing.Autonomous;
+package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.pedropathing.follower.Follower;
 import com.pedropathing.geometry.BezierLine;
