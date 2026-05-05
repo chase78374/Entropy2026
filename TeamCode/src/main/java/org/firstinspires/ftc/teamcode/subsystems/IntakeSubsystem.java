@@ -10,7 +10,8 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 public class IntakeSubsystem implements EntropySubsystem {
 
     //@Override
-    public DcMotorEx intakeMotor;
+    public DcMotorEx intake1;
+    public DcMotorEx intake2;
 
     public HardwareMap hardwareMap;
 
@@ -20,19 +21,27 @@ public class IntakeSubsystem implements EntropySubsystem {
 
     public void teleOpManual(Gamepad gamepad) {};
     public void init() {
-        intakeMotor = hardwareMap.get(DcMotorEx.class, "intakeMotor");
-        intakeMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        intakeMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
-        intakeMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
-        intakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        intake1 = hardwareMap.get(DcMotorEx.class, "intake1");
+        intake1.setDirection(DcMotorSimple.Direction.FORWARD);
+        intake1.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        intake1.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+        intake1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        intake2 = hardwareMap.get(DcMotorEx.class, "intake1");
+        intake2.setDirection(DcMotorSimple.Direction.FORWARD);
+        intake2.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        intake2.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+        intake2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
 
     public void setSpeed(double speed) {
-        intakeMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
-        intakeMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
-        intakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-
-        intakeMotor.setVelocity(speed);
+        intake1.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        intake1.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+        intake1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        intake1.setVelocity(speed);
+        intake2.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        intake2.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+        intake2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        intake2.setVelocity(speed);
     }
 
     public void intake(String intaking) {
@@ -45,23 +54,33 @@ public class IntakeSubsystem implements EntropySubsystem {
         }
     }
     public void passOne() {
-        intakeMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        intakeMotor.setTargetPosition(intakeMotor.getCurrentPosition() + 500);
-        intakeMotor.setPower(.3);
+        intake1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        intake1.setTargetPosition(intake1.getCurrentPosition() + 500);
+        intake1.setPower(.3);
+        intake2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        intake2.setTargetPosition(intake1.getCurrentPosition() + 500);
+        intake2.setPower(.3);
     }
 
     public void setIntakePower(double power) {
-        intakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        intakeMotor.setPower(power);
+        intake1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        intake1.setPower(power);
+        intake2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        intake2.setPower(power);
     }
 
     public void intakeAuto() {
-        intakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        intakeMotor.setPower(0.5);
+        intake1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        intake1.setPower(1);
+        intake2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        intake2.setPower(1);
     }
 
     public void intakeOffAuto() {
-        intakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        intakeMotor.setPower(0);
+        intake1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        intake2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        intake1.setPower(0);
+        intake2.setPower(0);
+
     }
 }

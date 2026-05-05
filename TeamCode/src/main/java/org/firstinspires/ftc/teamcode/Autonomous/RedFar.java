@@ -18,9 +18,9 @@ import com.pedropathing.geometry.Pose;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@Autonomous(name = "RedFar", group = "Autonomous")
+@Autonomous(name = "BlueFar", group = "Autonomous")
 @Configurable // Panels
-public class BlueFar extends OpMode {
+public class RedFar extends OpMode {
     private TelemetryManager panelsTelemetry; // Panels Telemetry instance
     public Follower follower; // Pedro Pathing follower instance
     public IntakeSubsystem intake;
@@ -36,18 +36,18 @@ public class BlueFar extends OpMode {
     private Timer pathTimer, opmodeTimer, actionTimer;
 
 
-    private final Pose startPose = new Pose(57.5, 8, Math.toRadians(90));
-    private final Pose scorePose = new Pose(57.5, 15, Math.toRadians(112.5));
-    private final Pose humanZone1 = new Pose(10, 13.5, Math.toRadians(180));
+    private final Pose startPose = new Pose(85, 8, Math.toRadians(90));
+    private final Pose scorePose = new Pose(85, 15, Math.toRadians(68.5));
+    private final Pose humanZone1 = new Pose(132, 13.5, Math.toRadians(0));
     private final Pose bezierCurve1 = new Pose(116.500, 8.250);
     private final Pose bezierCurve2 = new Pose(80.500, 36.000);
     private final Pose bezierCurve3 = new Pose(102.500, 36.000);
     private final Pose bezierCurve4 = new Pose(132.000, 20.000);
-    private final Pose humanZone2 = new Pose(132, 8, Math.toRadians(180));
-    private final Pose grabSpike3 = new Pose(130, 35, Math.toRadians(180));
-    private final Pose grabFieldBall1 = new Pose(130, 40, Math.toRadians(180));
+    private final Pose humanZone2 = new Pose(132, 8, Math.toRadians(0));
+    private final Pose grabSpike3 = new Pose(130, 35, Math.toRadians(0));
+    private final Pose grabFieldBall1 = new Pose(130, 40, Math.toRadians(0));
     private final Pose grabFieldBall2 = new Pose(132, 47.5, Math.toRadians(90));
-    private final Pose parkingPose = new Pose(85, 25, Math.toRadians(180));
+    private final Pose parkingPose = new Pose(85, 25, Math.toRadians(0));
 
 
     private int shootStep = 0;
@@ -285,12 +285,12 @@ public class BlueFar extends OpMode {
                 }
                 break;
             case 9:
-                if (!follower.isBusy()) {
-                    intake.intake("in");
-                    shooter.bangBang(1650);
-                    setPathState(69);
-                }
-                break;
+                    if (!follower.isBusy()) {
+                        intake.intake("in");
+                        shooter.bangBang(1650);
+                        setPathState(69);
+                    }
+                    break;
             case 69:
                 if (!follower.isBusy()) {
                     l.setPosition(.3);
@@ -352,7 +352,7 @@ public class BlueFar extends OpMode {
                 }
                 break;
             case -1:
-                break;
+                    break;
 
 
 
